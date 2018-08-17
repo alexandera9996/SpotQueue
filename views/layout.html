@@ -1,0 +1,114 @@
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="{{=URL('static','css/myapp.css')}}" rel="stylesheet" type="text/css"/>
+    <title>SpotQueue - UCSC Spotify Queueing System</title>
+    {{include "web2py_ajax.html"}}
+  </head>
+  <body class="black">
+    {{if response.flash:}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{=response.flash}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {{pass}}
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="min-height: 5rem">
+      <div class="container">
+        <span class="navbar-brand mb-o">
+          <img src="https://i.imgur.com/khfejPe.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            SpotQueue
+        </span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            {{if request.function == "index":}}
+              <a class="nav-item nav-link active" href="{{=URL('default', 'index')}}">Home <span class="sr-only">(current)</span></a>
+            {{else:}}
+              <a class="nav-item nav-link" href="{{=URL('default', 'index')}}">Home</a>
+            {{pass}}
+            {{if request.function == "about":}}
+              <a class="nav-item nav-link active" href="{{=URL('default', 'about')}}">About <span class="sr-only">(current)</span></a>
+            {{else:}}
+              <a class="nav-item nav-link" href="{{=URL('default', 'about')}}">About</a>
+            {{pass}}
+            {{if request.function == "team":}}
+              <a class="nav-item nav-link active" href="{{=URL('default', 'team')}}">Team <span class="sr-only">(current)</span></a>
+            {{else:}}
+              <a class="nav-item nav-link" href="{{=URL('default', 'team')}}">Team</a>
+            {{pass}}
+            {{if request.function == "faq":}}
+              <a class="nav-item nav-link active" href="{{=URL('default', 'faq')}}">FAQ <span class="sr-only">(current)</span></a>
+            {{else:}}
+              <a class="nav-item nav-link" href="{{=URL('default', 'faq')}}">FAQ</a>
+            {{pass}}
+            {{if auth.user is not None:}}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{=auth.user.first_name}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{=URL('default', 'user/profile')}}">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{{=URL('default', 'user/logout')}}">Logout</a>
+                </div>
+              </li>
+            {{else:}}
+              {{if request.function == "user":}}
+                <a class="nav-item nav-link active" href="{{=URL('default', 'user')}}">Login <span class="sr-only">(current)</span></a>
+              {{else:}}
+                <a class="nav-item nav-link" href="{{=URL('default', 'user')}}">Login</a>
+              {{pass}}
+            {{pass}}
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main class="white">
+      {{include}}
+    </main>
+
+    <style>
+    .twitter{
+      font-size: 2em !important;
+      letter-spacing: 0.3em !important;
+      text-decoration: none !important;
+    }
+    </style>
+    <footer>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="twitter">
+            <a href="">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+          <div class="twitter">
+            <a href="https://github.com/rtbishop/spotqueue">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <!-- this was stopping api.py from working, not sure what it does-->
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="{{=URL('static','js/marked.min.js')}}"></script>
+  <script src="{{=URL('static','js/vue.min.js')}}"></script>
+  {{block bottomjs}}{{end}}
+  <script>
+    jQuery('.social a').each(function(){var t=jQuery(this); t.attr('href',t.attr('href').replace('{url}',encodeURIComponent(window.location.href)));});
+  </script>
+</html>
