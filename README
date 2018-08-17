@@ -1,0 +1,13 @@
+Add your own credentials.py to modules folder.
+
+credentials.py contains:
+
+CLIENT_ID
+CLIENT_SECRET
+SPOTIFY_USER
+SPOTIFY_USER_ID
+PLAYLIST_ID
+CLIENT_ACCESS_TOKEN
+
+REDIRECT_URI
+ 
